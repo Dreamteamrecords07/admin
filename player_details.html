@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Match Details</title>
+
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.3.0/firebase-database-compat.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+
+            apiKey: "AIzaSyCAp-lj-RsCG7TZo7Ey39WeHLoaMm7trkc",
+            authDomain: "dream-team-records.firebaseapp.com",
+            projectId: "dream-team-records",
+            storageBucket: "rn-nursing-academy.appspot.com",
+            databaseURL: "https://dream-team-records-default-rtdb.firebaseio.com",
+            messagingSenderId: "601526828587",
+            appId: "1:601526828587:web:0511113cef98848fce346e",
+            measurementId: "G-GHTYF624Z6"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        // Get a reference to the Firebase database
+        var database = firebase.database();
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 200px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+    </style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        form {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .form-group {
+            flex: 0 0 calc(33.33% - 10px);
+            margin-bottom: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Create Your Fantasy Cricket Team</h1>
+    <form>
+        <div class="form-group">
+            <label for="wicketKeeper1">Wicket Keeper 1:</label>
+            <input type="text" id="wicketKeeper1" name="wicketKeeper1" placeholder="Player Id" required>
+            <input type="text" id="wicketKeeperName1" name="wicketKeeperName1" placeholder="Player Name" required>
+            <input type="text" id="wicketKeeper1Points" name="wicketKeeper1Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="wicketKeeper2">Wicket Keeper 2:</label>
+            <input type="text" id="wicketKeeper2" name="wicketKeeper2" placeholder="Player Id" required>
+            <input type="text" id="wicketKeeperName2" name="wicketKeeperName2" placeholder="Player Name" required>
+            <input type="text" id="wicketKeeper2Points" name="wicketKeeper2Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="wicketKeeper3">Wicket Keeper 3:</label>
+            <input type="text" id="wicketKeeper3" name="wicketKeeper3" placeholder="Player Id" required>
+            <input type="text" id="wicketKeeperName3" name="wicketKeeperName3" placeholder="Player Name" required>
+            <input type="text" id="wicketKeeper3Points" name="wicketKeeper3Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="batter">Batter:</label>
+            <input type="text" id="batter" name="batter" placeholder="Player Id" required>
+            <input type="text" id="batterName" name="batterName" placeholder="Player Name" required>
+            <input type="text" id="batterPoints" name="batterPoints" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="allRounder1">All-Rounder 1:</label>
+            <input type="text" id="allRounder1" name="allRounder1" placeholder="Player Id" required>
+            <input type="text" id="allRounderName1" name="allRounderName1" placeholder="Player Name" required>
+            <input type="text" id="allRounder1Points" name="allRounder1Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="allRounder2">All-Rounder 2:</label>
+            <input type="text" id="allRounder2" name="allRounder2" placeholder="Player Id" required>
+            <input type="text" id="allRounderName2" name="allRounderName2" placeholder="Player Name" required>
+            <input type="text" id="allRounder2Points" name="allRounder2Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="allRounder3">All-Rounder 3:</label>
+            <input type="text" id="allRounder3" name="allRounder3" placeholder="Player Id" required>
+            <input type="text" id="allRounderName3" name="allRounderName3" placeholder="Player Name" required>
+            <input type="text" id="allRounder3Points" name="allRounder3Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="allRounder4">All-Rounder 4:</label>
+            <input type="text" id="allRounder4" name="allRounder4" placeholder="Player Id" required>
+            <input type="text" id="allRounderName4" name="allRounderName4" placeholder="Player Name" required>
+            <input type="text" id="allRounder4Points" name="allRounder4Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bowler1">Bowler 1:</label>
+            <input type="text" id="bowler1" name="bowler1" placeholder="Player Id" required>
+            <input type="text" id="bowlerName1" name="bowlerName1" placeholder="Player Name" required>
+            <input type="text" id="bowler1Points" name="bowler1Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bowler2">Bowler 2:</label>
+            <input type="text" id="bowler2" name="bowler2" placeholder="Player Id" required>
+            <input type="text" id="bowlerName2" name="bowlerName2" placeholder="Player Name" required>
+            <input type="text" id="bowler2Points" name="bowler2Points" placeholder="Image Link" required>
+        </div>
+
+        <div class="form-group">
+            <label for="bowler3">Bowler 3:</label>
+            <input type="text" id="bowler3" name="bowler3" placeholder="Player Id" required>
+            <input type="text" id="bowlerName3" name="bowlerName3" placeholder="Player Name" required>
+            <input type="text" id="bowler3Points" name="bowler3Points" placeholder="Image Link" required>
+        </div>
+        <div class="form-group" style="flex: 0 0 100%;">
+            <button type="submit">Create Team</button>
+        </div>
+    </form>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Batting Style</th>
+            <th>Bowling Style</th>
+            <th>Country</th>
+            <th>ImageList</th>
+            <th>Image</th>
+        </tr>
+        <!-- JavaScript will populate this table with player data -->
+    </table>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const matchId = urlParams.get('matchId');
+
+        // Make an API request to fetch player details based on the matchId
+        fetch(`https://api.cricapi.com/v1/match_squad?apikey=d2bef66d-c1c4-4b3a-81e6-f9f2eb627384&id=${matchId}`)
+            .then(response => response.json())
+            .then(matchData => {
+                const table = document.querySelector('table');
+                matchData.data.forEach(team => {
+                    team.players.forEach(player => {
+                        const row = table.insertRow();
+                        row.innerHTML = `
+                            <td>${player.id}</td>
+                            <td>${player.name}</td>
+                            <td>${player.role}</td>
+                            <td>${player.battingStyle}</td>
+                            <td>${player.bowlingStyle}</td>
+                            <td>${player.country}</td>
+                            <td>${player.playerImg}</td>
+                            <td><img src="${player.playerImg}" alt="Player Image" width="100" height="100"></td>
+                        `;
+                    });
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching player data:', error);
+            });
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.querySelector("form");
+
+
+            form.addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission behavior
+
+                // Get form values
+                const wicketKeeper1 = document.getElementById("wicketKeeper1").value;
+                const wicketKeeperName1 = document.getElementById("wicketKeeperName1").value;
+                const wicketKeeper1Points = document.getElementById("wicketKeeper1Points").value;
+
+                const wicketKeeper2 = document.getElementById("wicketKeeper2").value;
+                const wicketKeeperName2 = document.getElementById("wicketKeeperName2").value;
+                const wicketKeeper2Points = document.getElementById("wicketKeeper2Points").value;
+
+                const wicketKeeper3 = document.getElementById("wicketKeeper3").value;
+                const wicketKeeperName3 = document.getElementById("wicketKeeperName3").value;
+                const wicketKeeper3Points = document.getElementById("wicketKeeper3Points").value;
+
+                const batter = document.getElementById("batter").value;
+                const batterName = document.getElementById("batterName").value;
+                const batterPoints = document.getElementById("batterPoints").value;
+
+                const allRounder1 = document.getElementById("allRounder1").value;
+                const allRounderName1 = document.getElementById("allRounderName1").value;
+                const allRounder1Points = document.getElementById("allRounder1Points").value;
+
+                const allRounder2 = document.getElementById("allRounder2").value;
+                const allRounderName2 = document.getElementById("allRounderName2").value;
+                const allRounder2Points = document.getElementById("allRounder2Points").value;
+
+                const allRounder3 = document.getElementById("allRounder3").value;
+                const allRounderName3 = document.getElementById("allRounderName3").value;
+                const allRounder3Points = document.getElementById("allRounder3Points").value;
+
+                const allRounder4 = document.getElementById("allRounder4").value;
+                const allRounderName4 = document.getElementById("allRounderName4").value;
+                const allRounder4Points = document.getElementById("allRounder4Points").value;
+
+                const bowler1 = document.getElementById("bowler1").value;
+                const bowlerName1 = document.getElementById("bowlerName1").value;
+                const bowler1Points = document.getElementById("bowler1Points").value;
+
+                const bowler2 = document.getElementById("bowler2").value;
+                const bowlerName2 = document.getElementById("bowlerName2").value;
+                const bowler2Points = document.getElementById("bowler2Points").value;
+
+                const bowler3 = document.getElementById("bowler3").value;
+                const bowlerName3 = document.getElementById("bowlerName3").value;
+                const bowler3Points = document.getElementById("bowler3Points").value;
+                // Create an object with the form data
+                const playerData = {
+                    wicketKeeper1: wicketKeeper1,
+                    wicketKeeperName1: wicketKeeperName1,
+                    wicketKeeper1Points: wicketKeeper1Points,
+
+                    wicketKeeper2: wicketKeeper2,
+                    wicketKeeperName2: wicketKeeperName2,
+                    wicketKeeper2Points: wicketKeeper2Points,
+
+                    wicketKeeper3: wicketKeeper3,
+                    wicketKeeperName3: wicketKeeperName3,
+                    wicketKeeper3Points: wicketKeeper3Points,
+
+                    batter: batter,
+                    batterName: batterName,
+                    batterPoints: batterPoints,
+
+                    allRounder1: allRounder1,
+                    allRounderName1: allRounderName1,
+                    allRounder1Points: allRounder1Points,
+
+                    allRounder2: allRounder2,
+                    allRounderName2: allRounderName2,
+                    allRounder2Points: allRounder2Points,
+
+                    allRounder3: allRounder3,
+                    allRounderName3: allRounderName3,
+                    allRounder3Points: allRounder3Points,
+
+                    allRounder4: allRounder4,
+                    allRounderName4: allRounderName4,
+                    allRounder4Points: allRounder4Points,
+
+                    bowler1: bowler1,
+                    bowlerName1: bowlerName1,
+                    bowler1Points: bowler1Points,
+
+                    bowler2: bowler2,
+                    bowlerName2: bowlerName2,
+                    bowler2Points: bowler2Points,
+
+                    bowler3: bowler3,
+                    bowlerName3: bowlerName3,
+                    bowler3Points: bowler3Points
+                };
+
+
+                // Get a reference to the Firebase database
+                const database = firebase.database();
+
+                // Set the data under the same courseID
+                const courseRef = database.ref("matches/" + matchId);
+                console.log("About to send data: ", playerData);
+                courseRef.set(playerData)
+                    .then(function () {
+                        console.log("Data successfully sent to Firebase");
+                        // Show success message
+                        // messageContainer.textContent = "Data sent successfully!";
+                        setTimeout(function () {
+                            // messageContainer.textContent = ""; // Clear the message after 5 seconds
+                        }, 5000);
+                    })
+                    .catch(function (error) {
+                        console.error("Error sending data to Firebase: ", error);
+                        // Show error message
+                        // messageContainer.textContent = "Error sending data.";
+                        setTimeout(function () {
+                            // messageContainer.textContent = ""; // Clear the message after 5 seconds
+                        }, 5000);
+                    });
+            });
+        });
+    </script>
+</body>
+
+</html>
